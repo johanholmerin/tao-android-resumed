@@ -1,0 +1,35 @@
+[package]
+name = "tao_demo"
+# Version is required by `cargo-apk`, though this value will never change.
+version = "0.0.0"
+edition = "2021"
+description = ""
+publish = false
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "tao_demo"
+crate-type = ["staticlib", "cdylib", "lib"]
+
+[dependencies]
+pollster = "0.3.0"
+tracing = { version = "0.1.40", default-features = false }
+smallvec = "1.13.2"
+tao = "0.28.1"
+ndk-glue = "0.7.0"
+
+[package.metadata.android]
+package = "org.tao.example"
+apk_name = "taoexample"
+strip = "strip"
+build_targets = ["aarch64-linux-android", "armv7-linux-androideabi"]
+
+[package.metadata.android.sdk]
+target_sdk_version = 31
+
+[package.metadata.android.application]
+label = "Tao Example"
+
+[package.metadata.docs.rs]
+rustdoc-args = ["-Zunstable-options", "--cfg", "docsrs"]
+all-features = true
